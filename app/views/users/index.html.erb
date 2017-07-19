@@ -1,0 +1,7 @@
+<h1> All Users </h1>
+<% @users.each do |user| %>
+  <%= user.username %>
+  <% if current_admin %>
+    <%= link_to "Delete", user_path(user), method: :delete %>
+  <% end %>
+<% end %>

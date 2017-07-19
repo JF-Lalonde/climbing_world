@@ -3,6 +3,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def index
+    @users = User.all
+  end
+
   def show
   end
 
@@ -20,8 +24,11 @@ class UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     user.destroy
-    flash[:success] = "User deleted!"
-    redirect_to "welcome#index"
+    session[:user_id] = user.id
+    session.delete(:user_id)
+    flash[:success] = "User Deleted!"
+    redirect_to users_path
+    #Create an if else for different redirects based on admin or default
   end
 
   private
