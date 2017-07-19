@@ -11,10 +11,17 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "Login Successful!"
-      redirect_to "/users/#{@user.id}"
+      redirect_to user_path(@user)
     else
-      render "/users/new"
+      render :new
     end
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    flash[:success] = "User deleted!"
+    redirect_to "welcome#index"
   end
 
   private
