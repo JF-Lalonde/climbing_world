@@ -28,6 +28,7 @@ class UsersController < ApplicationController
     session.delete(:user_id)
     flash[:success] = "User Deleted!"
     redirect_to users_path
+    #Delete session not working
     #Create an if else for different redirects based on admin or default
   end
 
