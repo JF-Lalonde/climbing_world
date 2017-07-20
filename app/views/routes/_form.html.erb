@@ -1,0 +1,27 @@
+<%= form_for @route do |f| %>
+  <% if @route.errors.any? %>
+  <ul>
+    <% @route.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <%= f.label :route_name %>
+  <%= f.text_field :route_name %></br>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %></br>
+
+  <%= f.label :location %>
+  <div class="first"><%= f.collection_select(:location_id, Location.all, :id, :region, {prompt: "Select Region"}, {include_blank: true})%></div></br>
+  <div class="second"><%= f.collection_select(:location_id, Location.all, :id, :city, {prompt: "Select City"}, {include_blank: true})%></div></br>
+  <div class="third"><%= f.collection_select(:location_id, Location.all, :id, :state, {prompt: "Select State"}, {include_blank: true})%></div></br>
+
+  <%= f.label :pitch %>
+  <%= f.collection_select(:pitch_id, Pitch.all, :id, :number, {prompt: "Select Pitches"}, {include_blank: true})%></br>
+
+  <%= f.label :rating %>
+  <%= f.collection_select(:rating_id, Rating.all, :id, :number, {prompt: "Select Rating"}, {include_blank: true})%></br>
+
+  <%= f.submit %>
+<% end %>

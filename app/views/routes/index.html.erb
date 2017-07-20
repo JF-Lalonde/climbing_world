@@ -1,0 +1,14 @@
+<h1>All Routes</h1>
+
+<% @routes.each do |route| %>
+<h1>Name: <%= route.route_name %></h1>
+<h2>Description: <%= route.description %></h2>
+
+<h2>Region: <%= route.location.region %></h2>
+<h2>Location: <%= route.location.city %>, <%= route.location.state %></h2>
+
+<h2>Number of pitches: <%= route.pitch.number %></h2>
+
+<h2>Rating: <%= route.rating.number %></h2>
+<%= link_to "Delete", route_path(route), method: "delete" %>
+<% end %>

@@ -3,6 +3,10 @@ class RoutesController < ApplicationController
     @route = Route.new
   end
 
+  def index
+    @routes = Route.all
+  end
+
   def create
     @route = Route.new(route_params)
     if @route.save
@@ -17,6 +21,30 @@ class RoutesController < ApplicationController
 
   def show
     @route = Route.find(params[:id])
+  end
+
+  def edit
+    @route = Route.find(params[:id])
+  end
+
+  def update
+    @route = Route.find(params[:id])
+    @route.update(route_params)
+    if @route.save
+      flash[:success] = "Route Updated!"
+      redirect_to route_path(@route)
+    else
+      flash[:error] = "Invalid Update!"
+      render :edit
+    end
+  end
+
+  def destroy
+    route = Route.find(params[:id])
+    route.destroy
+    flash[:success] = "Route Removed"
+
+    redirect_to routes_path
   end
 
   private
