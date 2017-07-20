@@ -1,0 +1,13 @@
+<h1> New Climbing Location:</h1>
+<%= form_for @location do |f| %>
+  <%= f.label :region %>
+  <%= f.text_field :region %>
+
+  <%= f.label :city %>
+  <%= f.text_field :city %>
+
+  <%= f.label :state %>
+  <%= f.text_field :state %>
+
+  <%= f.submit %>
+<% end %>

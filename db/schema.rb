@@ -10,10 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718214453) do
+ActiveRecord::Schema.define(version: 20170719234915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "locations", force: :cascade do |t|
+    t.string "region"
+    t.string "city"
+    t.string "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pitches", force: :cascade do |t|
+    t.integer "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.string "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "routes", force: :cascade do |t|
+    t.string "route_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "rating_id"
+    t.bigint "pitch_id"
+    t.bigint "location_id"
+    t.text "description"
+    t.index ["location_id"], name: "index_routes_on_location_id"
+    t.index ["pitch_id"], name: "index_routes_on_pitch_id"
+    t.index ["rating_id"], name: "index_routes_on_rating_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -23,4 +56,7 @@ ActiveRecord::Schema.define(version: 20170718214453) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "routes", "locations"
+  add_foreign_key "routes", "pitches"
+  add_foreign_key "routes", "ratings"
 end
