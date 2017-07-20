@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :route do
-    route_name "MyString"
-    description "OtherString"
+    route_name "Route Name"
+    description "Route Description"
     :locations
     :pitches
     :ratings
