@@ -25,9 +25,9 @@ feature "User creates a route" do
     page.find("#route_rating_id").click
     select "5.10b"
 
-    # expect(page).to have_link "New Location"
-    # expect(page).to have_link "New Pitch"
-    # expect(page).to have_link "New Rating"
+    expect(page).to have_link "Create New Location"
+    expect(page).to have_link "Create New Pitches"
+    expect(page).to have_link "Create New Rating"
 
     click_button "Create"
     expect(current_path).to eq("/routes/#{Route.last.id}")
