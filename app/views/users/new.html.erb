@@ -1,14 +1,36 @@
 <%= form_for(@user, url: users_path) do |f| %>
   <% if @user.errors.any? %>
-  <ul>
+    <div id="error_explanation">
+
+    <ul>
     <% @user.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
-  </ul>
+    </ul>
+  </div>
   <% end %>
-  Create Name: <%= f.text_field :username %></br>
-  Password: <%= f.password_field :password %></br>
-  Confirm Password: <%= f.password_field :password_confirmation %></br>
 
-  <%= f.submit "Create Account" %>
+  <div class="field form-group">
+    <%= f.label :create_username, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :username, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :password, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.password_field :password, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :password_confirmation, class: 'col-sm-3 control-label' %>
+    <div class="col-sm-10">
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="actions form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit %>
+    </div>
+  </div>
 <% end %>
