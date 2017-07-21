@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719234915) do
+ActiveRecord::Schema.define(version: 20170721155410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,12 @@ ActiveRecord::Schema.define(version: 20170719234915) do
 
   create_table "pitches", force: :cascade do |t|
     t.integer "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "qualities", force: :cascade do |t|
+    t.integer "star_value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,6 +54,16 @@ ActiveRecord::Schema.define(version: 20170719234915) do
     t.index ["rating_id"], name: "index_routes_on_rating_id"
   end
 
+  create_table "routesqualities", force: :cascade do |t|
+    t.bigint "routes_id"
+    t.bigint "qualities_id"
+    t.float "average_quality"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["qualities_id"], name: "index_routesqualities_on_qualities_id"
+    t.index ["routes_id"], name: "index_routesqualities_on_routes_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.integer "role", default: 0
@@ -59,4 +75,6 @@ ActiveRecord::Schema.define(version: 20170719234915) do
   add_foreign_key "routes", "locations"
   add_foreign_key "routes", "pitches"
   add_foreign_key "routes", "ratings"
+  add_foreign_key "routesqualities", "qualities", column: "qualities_id"
+  add_foreign_key "routesqualities", "routes", column: "routes_id"
 end
