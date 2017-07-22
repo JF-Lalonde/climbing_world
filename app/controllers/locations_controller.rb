@@ -3,6 +3,10 @@ class LocationsController < ApplicationController
     @location = Location.new
   end
 
+  def index
+    @locations = Location.all
+  end
+
   def create
     @location = Location.new(location_params)
     if @location.save
@@ -16,6 +20,30 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
+  end
+
+  def edit
+    @location = Location.find(params[:id])
+  end
+
+  def update
+    @location = Location.find(params[:id])
+    @location.update(location_params)
+    if @location.save
+      flash[:success] = "Location Updated!"
+      redirect_to location_path(@location)
+    else
+      flash[:error] = "Invalid Update!"
+      render :edit
+    end
+  end
+
+  def destroy
+    location = Location.find(params[:id])
+    location.destroy
+    flash[:success] = "Location Removed"
+
+    redirect_to locations_path
   end
 
   private

@@ -1,0 +1,2 @@
+class RoutesQualitiesController < ApplicationController
+end
