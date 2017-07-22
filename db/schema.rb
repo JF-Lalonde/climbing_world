@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721155410) do
+ActiveRecord::Schema.define(version: 20170721201728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "route_id"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["route_id"], name: "index_comments_on_route_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "locations", force: :cascade do |t|
     t.string "region"
@@ -55,13 +65,13 @@ ActiveRecord::Schema.define(version: 20170721155410) do
   end
 
   create_table "routesqualities", force: :cascade do |t|
-    t.bigint "routes_id"
-    t.bigint "qualities_id"
+    t.bigint "route_id"
+    t.bigint "quality_id"
     t.float "average_quality"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["qualities_id"], name: "index_routesqualities_on_qualities_id"
-    t.index ["routes_id"], name: "index_routesqualities_on_routes_id"
+    t.index ["quality_id"], name: "index_routesqualities_on_quality_id"
+    t.index ["route_id"], name: "index_routesqualities_on_route_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -72,9 +82,22 @@ ActiveRecord::Schema.define(version: 20170721155410) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "users_routes", force: :cascade do |t|
+    t.bigint "route_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["route_id"], name: "index_users_routes_on_route_id"
+    t.index ["user_id"], name: "index_users_routes_on_user_id"
+  end
+
+  add_foreign_key "comments", "routes"
+  add_foreign_key "comments", "users"
   add_foreign_key "routes", "locations"
   add_foreign_key "routes", "pitches"
   add_foreign_key "routes", "ratings"
-  add_foreign_key "routesqualities", "qualities", column: "qualities_id"
-  add_foreign_key "routesqualities", "routes", column: "routes_id"
+  add_foreign_key "routesqualities", "qualities"
+  add_foreign_key "routesqualities", "routes"
+  add_foreign_key "users_routes", "routes"
+  add_foreign_key "users_routes", "users"
 end
