@@ -1,0 +1,9 @@
+<h1>All Locations</h1>
+
+<% @locations.each do |location| %>
+
+<h2>Region: <%= location.region %></h2>
+<h2>Location: <%= location.city %>, <%= location.state %></h2>
+
+<%= link_to "Delete", location_path(location), method: "delete" %>
+<% end %>
