@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Routesquality, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "relationships" do
+    it {should belong_to(:route) }
+    it {should belong_to(:quality) }
+  end
 end
