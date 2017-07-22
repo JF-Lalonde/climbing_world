@@ -33,6 +33,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 gem 'jquery-rails'
 gem "autoprefixer-rails"
+gem 'popper_js'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
