@@ -13,17 +13,7 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
-body {
-  background: url("header.jpg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-
-    /* Workaround for some mobile browsers */
-  min-height:100%;
-  padding: 20px;
-        }
+@import "partials/*";
 
 #login-dp{
     min-width: 250px;
