@@ -8,9 +8,10 @@
     <h1>All Routes</h1>
     <h2><%= link_to "Create New Route", new_route_path %>
 
-      <div class="row">
+      <div class="row hover-panel">
         <% @routes.each do |route| %>
-          <div class="col-md-5">
+        <a href="/routes/<%= route.id %>">
+          <div class="col-md-6">
             <div class="panel panel-default">
               <div class="panel-heading">
                   <h1 class="panel-title">Route: <%= route.route_name %></h1>
@@ -27,6 +28,7 @@
 
                 <h3>Quality: <%= %></h3>
               </div>
+            </a>
               <div class="panel-footer">
                 <span class="links"><span id="edit-delete"><h5><%= link_to "Edit", edit_route_path(route) %>
                   <%= link_to "Delete", route_path(route), method: "delete" %></span>

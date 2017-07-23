@@ -5,17 +5,34 @@
     <title>View A Route</title>
   </head>
   <body>
-    <h1>Name: <%= @route.route_name %></h1>
-    <h2>Description: <%= @route.description %></h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h1>Route: <%= @route.route_name %></h1>
+            </div>
+          </div>
+            <div class="panel-body">
+              <h2>Description: <%= @route.description %></h2>
 
-    <h2>Region: <%= @route.location.region %></h2>
-    <h2>Location: <%= @route.location.city %>, <%= @route.location.state %></h2>
+              <h2>Region: <%= @route.location.region %></h2>
+              <h2>Location: <%= @route.location.city %>, <%= @route.location.state %></h2>
 
-    <h2>Number of pitches: <%= @route.pitch.number %></h2>
+              <h2>Number of pitches: <%= @route.pitch.number %></h2>
 
-    <h2>Rating: <%= @route.rating.number %></h2>
+              <h2>Rating: <%= @route.rating.number %></h2>
 
-    <h2>Quality: <%= @route.routesqualities.first.average_quality %></h2>
-
+              <h2>Quality: <%= @route.routesqualities.first.average_quality %></h2>
+            </div>
+            <div class="panel-footer">
+              <span class="links"><span id="edit-delete"><h5><%= link_to "Edit", edit_route_path(@route) %>
+                <%= link_to "Delete", route_path(@route), method: "delete" %></span>
+                <span id="favorites"><%= link_to "Favorite", route_path(@route) %></span></span>
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
   </body>
 </html>
