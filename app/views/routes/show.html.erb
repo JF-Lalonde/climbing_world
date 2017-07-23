@@ -1,9 +1,21 @@
-<h1>Name: <%= @route.route_name %></h1>
-<h2>Description: <%= @route.description %></h2>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>View A Route</title>
+  </head>
+  <body>
+    <h1>Name: <%= @route.route_name %></h1>
+    <h2>Description: <%= @route.description %></h2>
 
-<h2>Region: <%= @route.location.region %></h2>
-<h2>Location: <%= @route.location.city %>, <%= @route.location.state %></h2>
+    <h2>Region: <%= @route.location.region %></h2>
+    <h2>Location: <%= @route.location.city %>, <%= @route.location.state %></h2>
 
-<h2>Number of pitches: <%= @route.pitch.number %></h2>
+    <h2>Number of pitches: <%= @route.pitch.number %></h2>
 
-<h2>Rating: <%= @route.rating.number %></h2>
+    <h2>Rating: <%= @route.rating.number %></h2>
+
+    <h2>Quality: <%= @route.routesqualities.first.average_quality %></h2>
+
+  </body>
+</html>

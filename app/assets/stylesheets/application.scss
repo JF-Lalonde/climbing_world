@@ -65,3 +65,17 @@
         border-top:0 none;
     }
 }
+.panel-heading {
+  text-align: center;
+  font-family: 'Permanent Marker', cursive;
+  font-weight: 300;
+  font-size: 20px;
+}
+.links {
+  #edit-delete {
+    text-align: left;
+    }
+  #favorites {
+  float: right;
+  }
+}

@@ -1,16 +1,41 @@
-<h1>All Routes</h1>
-<h2><%= link_to "Create New Route", new_route_path %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>View All Routes</title>
+  </head>
+  <body>
+    <h1>All Routes</h1>
+    <h2><%= link_to "Create New Route", new_route_path %>
 
-<% @routes.each do |route| %>
-<h1>Name: <%= route.route_name %></h1>
-<h2>Description: <%= route.description %></h2>
+      <div class="row">
+        <% @routes.each do |route| %>
+          <div class="col-md-5">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h1 class="panel-title">Route: <%= route.route_name %></h1>
+              </div>
+              <div class="panel-body">
+                <h3>Description: <%= route.description %></h3>
 
-<h2>Region: <%= route.location.region %></h2>
-<h2>Location: <%= route.location.city %>, <%= route.location.state %></h2>
+                <h3>Region: <%= route.location.region %></h3>
+                <h3>Location: <%= route.location.city %>, <%= route.location.state %></h3>
 
-<h2>Number of pitches: <%= route.pitch.number %></h2>
+                <h3>Number of pitches: <%= route.pitch.number %></h3>
 
-<h2>Rating: <%= route.rating.number %></h2>
-<%= link_to "Edit", edit_route_path(route) %>
-<%= link_to "Delete", route_path(route), method: "delete" %>
-<% end %>
+                <h3>Rating: <%= route.rating.number %></h3>
+
+                <h3>Quality: <%= %></h3>
+              </div>
+              <div class="panel-footer">
+                <span class="links"><span id="edit-delete"><h5><%= link_to "Edit", edit_route_path(route) %>
+                  <%= link_to "Delete", route_path(route), method: "delete" %></span>
+                  <span id="favorites"><%= link_to "Favorite", route_path(route) %></span></span>
+                </h5>
+              </div>
+            </div>
+          </div>
+          <% end %>
+      </div>
+  </body>
+</html>
