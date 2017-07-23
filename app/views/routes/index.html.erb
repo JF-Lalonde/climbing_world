@@ -1,4 +1,5 @@
 <h1>All Routes</h1>
+<h2><%= link_to "Create New Route", new_route_path %>
 
 <% @routes.each do |route| %>
 <h1>Name: <%= route.route_name %></h1>
@@ -10,5 +11,6 @@
 <h2>Number of pitches: <%= route.pitch.number %></h2>
 
 <h2>Rating: <%= route.rating.number %></h2>
+<%= link_to "Edit", edit_route_path(route) %>
 <%= link_to "Delete", route_path(route), method: "delete" %>
 <% end %>
