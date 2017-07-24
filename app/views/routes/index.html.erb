@@ -36,7 +36,11 @@
               <div class="panel-footer">
                 <span class="links"><span id="edit-delete"><h5><%= link_to "Edit", edit_route_path(route) if current_user.admin? %>
                   <%= link_to "Delete", route_path(route), method: "delete" if current_user.admin? %></span>
-                  <span id="favorites"><%= link_to "Favorite", route_path(route) %></span></span>
+                  <span id="favorites"><% if current_user %>
+                    <%= link_to "Favorite", users_routes_route_path(route, type: "favorite"), method: :put %>
+                    <%= link_to "Unfavorite", users_routes_route_path(route, type: "unfavorite"), method: :put %>
+                    <% end %>
+                  </span></span>
                 </h5>
               </div>
             </div>

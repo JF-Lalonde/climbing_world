@@ -9,7 +9,11 @@ Rails.application.routes.draw do
 
   resources :locations
 
-  resources :routes
+  resources :users_routes
+
+  resources :routes do
+    put :users_routes, on: :member
+  end
 
   resources :pitches
 
