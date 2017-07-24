@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authorize_admin, only: :index
   def new
     @user = User.new
   end
@@ -36,5 +37,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :password, :password_confirmation)
+  end
+
+  def authorize_admin
+    render file: "public/404", status: 404, formats: [:html] unless current_user && current_user.admin?
   end
 end

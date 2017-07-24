@@ -1,4 +1,4 @@
-<%= form_for @route do |f| %>
+<%= form_for @route, html: {class: "form-horizontal center"} do |f| %>
   <% if @route.errors.any? %>
   <ul>
     <% @route.errors.full_messages.each do |msg| %>
@@ -6,22 +6,56 @@
     <% end %>
   </ul>
   <% end %>
-  <%= f.label :route_name %>
-  <%= f.text_field :route_name %></br>
+  <div class="form-group">
+    <%= f.label :route_name, "Route Name:", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_field :route_name, class: "form-control" %>
+    </div>
+  </div>
 
-  <%= f.label :description %>
-  <%= f.text_field :description %></br>
+  <div class="form-group">
+    <%= f.label :description, "Description:", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_field :description, class: "form-control" %>
+    </div>
+  </div>
 
-  <%= f.label :location %>
-  <div class="first"><%= f.collection_select(:location_id, Location.all, :id, :region, {prompt: "Select Region"}, {include_blank: true})%></div></br>
-  <div class="second"><%= f.collection_select(:location_id, Location.all, :id, :city, {prompt: "Select City"}, {include_blank: true})%></div></br>
-  <div class="third"><%= f.collection_select(:location_id, Location.all, :id, :state, {prompt: "Select State"}, {include_blank: true})%></div></br>
+  <div class="form-group">
+    <%= f.label :location, "Region:", class: "col-md-4 control-label" %>
+    <div class="col-md-8 first">
+      <%= f.collection_select(:location_id, Location.select("DISTINCT ON (region) id, region"), :id, :region, {prompt: "Select Region"}, {class: "form-control"}) %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :location, "City:", class: "col-md-4 control-label" %>
+    <div class="col-md-8 second">
+      <%= f.collection_select(:location_id, Location.select("DISTINCT ON (city) id, city"), :id, :city, {prompt: "Select City"}, {class: "form-control"})%>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :location, "State:", class: "col-md-4 control-label" %>
+    <div class="col-md-8 third">
+      <%= f.collection_select(:location_id, Location.select("DISTINCT ON (state) id, state"), :id, :state, {prompt: "Select State"}, {class: "form-control"})%>
+    </div>
+  </div>
 
-  <%= f.label :pitch %>
-  <%= f.collection_select(:pitch_id, Pitch.all, :id, :number, {prompt: "Select Pitches"}, {include_blank: true})%></br>
+  <div class="form-group">
+    <%= f.label :pitch, "Pitches:", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.collection_select(:pitch_id, Pitch.select("DISTINCT ON (number) id, number"), :id, :number, {prompt: "Select Pitches"}, {class: "form-control"})%>
+    </div>
+  </div>
 
-  <%= f.label :rating %>
-  <%= f.collection_select(:rating_id, Rating.all, :id, :number, {prompt: "Select Rating"}, {include_blank: true})%></br>
+  <div class="form-group">
+    <%= f.label :rating, "Rating:", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.collection_select(:rating_id, Rating.order("number ASC").select("DISTINCT ON (number) id, number"), :id, :number, {prompt: "Select Rating"}, {class: "form-control"})%>
+    </div>
+  </div>
 
-  <%= f.submit %>
+  <div class="input-group">
+    <div class="col-md-4">
+      <%= f.submit "Create", class: "btn btn-default btn-primary" %>
+    </div>
+  </div>
 <% end %>

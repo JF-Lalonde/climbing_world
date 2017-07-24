@@ -1,4 +1,5 @@
 class RoutesController < ApplicationController
+  before_action :authorize_user, only: [:create]
   def new
     @route = Route.new
   end
@@ -51,5 +52,9 @@ class RoutesController < ApplicationController
 
   def route_params
     params.require(:route).permit(:route_name, :description, :location_id, :pitch_id, :rating_id)
+  end
+
+  def authorize_user
+    render file: "public/404", status: 404, formats: [:html] unless current_user
   end
 end

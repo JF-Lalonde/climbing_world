@@ -8,4 +8,8 @@ class Route < ApplicationRecord
   has_many :qualities, through: :routesqualities
   has_many :users_routes, dependent: :destroy
   has_many :users, through: :users_routes
+
+  def unique_locations
+    Location.pluck(:region).uniq
+  end
 end
