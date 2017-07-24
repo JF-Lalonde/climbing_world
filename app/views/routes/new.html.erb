@@ -1,7 +1,21 @@
-<h1> New Climbing Route:</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="page-header">
+      <h1>Create New Climbing Route: </h1>
+    </div>
 
-<%= link_to "Create New Location", new_location_path %></br>
-<%= link_to "Create New Pitches", new_pitch_path %></br>
-<%= link_to "Create New Rating", new_rating_path %></br>
+    <%= render partial: "form" %>
 
-<%= render partial: "form" %>
+    <div class="bottom-links">
+      <li id="new-route-background"><%= link_to "Create New Location", new_location_path %>
+        <%= link_to "Create New Pitches", new_pitch_path %>
+        <%= link_to "Create New Rating", new_rating_path %></li>
+    </div>
+
+  </body>
+</html>
