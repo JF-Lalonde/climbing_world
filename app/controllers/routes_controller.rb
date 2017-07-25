@@ -48,20 +48,22 @@ class RoutesController < ApplicationController
     redirect_to routes_path
   end
 
-  # def users_routes
-  #   type = params[:type]
-  #   if type == "favorite"
-  #     # current_user.users_routes << @route
-  #     redirect_to :back, notice: 'You favorited #{@route.route_name}'
-  #
-  #   elsif type == "unfavorite"
-  #     # current_user.users_routes.delete(@route)
-  #     redirect_to :back, notice: 'Unfavorited #{@route.route_name}'
-  #
-  #   else
-  #     redirect_to :back, notice: 'Nothing happened.'
-  #   end
-  # end
+  def users_routes
+    @route = Route.find(params[:id])
+    type = params[:type]
+    if type == "favorite"
+      byebug
+      current_user.routes << @route
+      redirect_to :back, notice: 'You favorited #{@route.route_name}'
+
+    elsif type == "unfavorite"
+      current_user.users_routes.delete(@route)
+      redirect_to :back, notice: 'Unfavorited #{@route.route_name}'
+
+    else
+      redirect_to :back, notice: 'Nothing happened.'
+    end
+  end
 
 
   private
