@@ -14,13 +14,13 @@ class Seed
   end
 
   def consume_api
-    response = Faraday.get("https://www.mountainproject.com/data?action=getRoutes&routeIds=#{id_range}&key=200112807-0bf6fdd00a09c4091f73f98f033dd1a0")
+    response = Faraday.get("https://www.mountainproject.com/data?action=getRoutes&routeIds=#{id_range}&key=#################################")
     raw_data = response.body
     JSON.parse(raw_data)
   end
 
   def test_consume_api
-    response = Faraday.get("https://www.mountainproject.com/data?action=getRoutes&routeIds=105748391&key=200112807-0bf6fdd00a09c4091f73f98f033dd1a0")
+    response = Faraday.get("https://www.mountainproject.com/data?action=getRoutes&routeIds=105748391&key=#################################")
     raw_data = response.body
     test_data = JSON.parse(raw_data)
   end
