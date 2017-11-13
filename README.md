@@ -1,24 +1,6 @@
-# README
+# Climbing World
+#### https://climbing-world.herokuapp.com/
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### An app to showcase climbing routes from around the world!
+#### Currently built in Rails with Bootstrap on the frontend
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
