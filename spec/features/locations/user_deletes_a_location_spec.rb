@@ -7,7 +7,7 @@ describe "User deletes existing location" do
     visit locations_path
 
     first("a").click
-
+save_and_open_page
     expect(page).to have_content("Location Removed")
     expect(page).to_not have_content("Boulder")
   end
