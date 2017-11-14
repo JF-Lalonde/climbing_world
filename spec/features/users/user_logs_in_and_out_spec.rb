@@ -13,7 +13,7 @@ feature "User logs in and out" do
     fill_in "session[username]", with: user.username
     fill_in "session[password]", with: user_attributes[:password]
 
-    click_on "Login"
+    click_button "Login"
 
     expect(current_path).to eq(root_path)
     expect(page).to have_content("#{user.username}")
