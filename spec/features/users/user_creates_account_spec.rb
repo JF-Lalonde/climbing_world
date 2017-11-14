@@ -11,7 +11,7 @@ feature "User creates a new account" do
     fill_in "user[username]", with: user_attributes[:username]
     fill_in "user[password]", with: user_attributes[:password]
     fill_in "user[password_confirmation]", with: user_attributes[:password]
-    click_on "Create Account"
+    click_button "Create Account"
 
     user = User.last
 
@@ -30,7 +30,7 @@ feature "User creates a new account" do
     fill_in "user[username]", with: user_attributes[:username]
     fill_in "user[password]", with: user_attributes[:password]
     fill_in "user[password_confirmation]", with: "Wrong password"
-    click_on "Create Account"
+    click_button "Create Account"
 
 
     expect(page).to have_content("Password confirmation doesn't match Password")
